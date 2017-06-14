@@ -66,8 +66,7 @@
             ],
             "properties": {
               "RepoUrl": "[parameters('repoURL')]",
-              "branch": "[parameters('repoBranch')]",
-              "IsManualIntegration": true
+              "branch": "[parameters('repoBranch')]"
             }
           }
 
