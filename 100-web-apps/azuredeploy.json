@@ -19,7 +19,7 @@
     },
     "repoURL": {
       "type": "string",
-      "defaultValue": "main",
+      "defaultValue": "https://github.com/Seryio/web-site-dev",
       "minLength": 1,
       "metadata": {
         "description": "URL of the github branch to use"
