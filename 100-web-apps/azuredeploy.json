@@ -1,23 +1,39 @@
 {
    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
    "contentVersion": "1.0.0.0",
-   "parameters": {
-      "hostingPlanName": {
-         "type": "string",
-         "defaultValue": "seryioappplan",
-         "minLength": 1,
-         "metadata": {
-            "description": "Name of the hosting plan to use in Azure."
-         }
-      },
-      "webSiteName": {
-         "type": "string",
-         "minLength": 1,
-         "metadata": {
-            "description": "Name of the Azure Web app to create."
-         }
+  "parameters": {
+    "hostingPlanName": {
+      "type": "string",
+      "defaultValue": "seryioappplan",
+      "minLength": 1,
+      "metadata": {
+        "description": "Name of the hosting plan to use in Azure."
       }
-   },
+    },
+    "webSiteName": {
+      "type": "string",
+      "minLength": 1,
+      "metadata": {
+        "description": "Name of the Azure Web app to create."
+      }
+    },
+    "repoURL": {
+      "type": "string",
+      "defaultValue": "main",
+      "minLength": 1,
+      "metadata": {
+        "description": "URL of the github branch to use"
+      }
+    },
+    "repoBranch": {
+      "type": "string",
+      "defaultValue": "main",
+      "minLength": 1,
+      "metadata": {
+        "description": "Name of the github branch to use"
+      }
+    }
+  },
    "resources": [
       {
          "apiVersion": "2015-08-01",
@@ -29,19 +45,33 @@
           "serverFarmId": "[resourceId('Microsoft.web/serverfarms', 'seryioappplan')]"
 
         },
-         "resources": [ 
-            {
-               "apiVersion": "2015-08-01",
-               "name": "web",
-               "type": "config",
-               "dependsOn": [
-                  "[concat('Microsoft.Web/sites/', parameters('webSiteName'))]"
-               ],
-               "properties": {
-                  "phpVersion": "5.6"
-               }
+        "resources": [
+          {
+            "apiVersion": "2015-08-01",
+            "name": "web",
+            "type": "config",
+            "dependsOn": [
+              "[concat('Microsoft.Web/sites/', parameters('webSiteName'))]"
+            ],
+            "properties": {
+              "phpVersion": "5.6"
             }
-         ]
+          },
+          {
+            "apiVersion": "2015-08-01",
+            "name": "web",
+            "type": "sourcecontrols",
+            "dependsOn": [
+              "[concat('Microsoft.Web/sites/', parameters('webSiteName'))]"
+            ],
+            "properties": {
+              "RepoUrl": "[parameters('repoURL')]",
+              "branch": "[parameters('repoBranch')]",
+              "IsManualIntegration": true
+            }
+          }
+
+        ]
       }
    ]
 }
