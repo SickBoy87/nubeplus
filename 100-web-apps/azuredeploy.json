@@ -24,11 +24,7 @@
          "name": "[parameters('webSiteName')]",
          "type": "Microsoft.Web/sites",
          "location": "[resourceGroup().location]",
-         "tags": {
-            "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource",
-            "displayName": "Website"
-         },
-        "properties": {
+         "properties": {
           "name": "[parameters('webSiteName')]",
           "serverFarmId": "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
         },
