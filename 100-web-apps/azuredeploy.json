@@ -29,7 +29,7 @@
           "serverFarmId": "subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/seryioappRG/providers/Microsoft.web/serverfarms/seryioappplan",
  
         },
-         "resources": [
+         "resources": [ 
             {
                "apiVersion": "2015-08-01",
                "name": "web",
