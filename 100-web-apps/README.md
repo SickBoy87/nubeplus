@@ -7,4 +7,4 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This template deploys an Azure Web APP
+This template deploys an Azure Web APP to an existing APP service plan
