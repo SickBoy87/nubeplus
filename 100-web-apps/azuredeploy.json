@@ -26,8 +26,8 @@
          "location": "[resourceGroup().location]",
          "properties": {
           "name": "[parameters('webSiteName')]",
-          "serverFarmId": "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
-        },
+          "serverFarmId": "[parameters('hostingPlanName')]"
+         },
          "resources": [
             {
                "apiVersion": "2015-08-01",
