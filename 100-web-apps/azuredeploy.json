@@ -1,0 +1,215 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "components_sample_php_web_app_name": {
+            "defaultValue": "sample-php-web-app",
+            "type": "String"
+        },
+        "serverfarms_ServicePlancfecf0bd_8beb_name": {
+            "defaultValue": "ServicePlancfecf0bd-8beb",
+            "type": "String"
+        },
+        "sites_sample_php_web_app_name": {
+            "defaultValue": "sample-php-web-app",
+            "type": "String"
+        },
+        "config_web_name": {
+            "defaultValue": "sample-php-web-app/web",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/sample-php-web-app/providers/microsoft.insights/components/sample-php-web-app'.",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_sample_php_web_app_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "southcentralus",
+            "tags": {
+                "hidden-link:/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/sample-php-web-app/providers/Microsoft.Web/sites/sample-php-web-app": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "ApplicationId": "[parameters('components_sample_php_web_app_name')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/sample-php-web-app/providers/Microsoft.Web/serverfarms/ServicePlancfecf0bd-8beb'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
+                "capacity": 1
+            },
+            "kind": "app",
+            "name": "[parameters('serverfarms_ServicePlancfecf0bd_8beb_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "South Central US",
+            "scale": null,
+            "properties": {
+                "name": "[parameters('serverfarms_ServicePlancfecf0bd_8beb_name')]",
+                "numberOfWorkers": 1
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/sample-php-web-app/providers/Microsoft.Web/sites/sample-php-web-app'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[parameters('sites_sample_php_web_app_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "South Central US",
+            "tags": {
+                "hidden-related:/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourcegroups/sample-php-web-app/providers/Microsoft.Web/serverfarms/ServicePlancfecf0bd-8beb": "empty"
+            },
+            "scale": null,
+            "properties": {
+                "name": "[parameters('sites_sample_php_web_app_name')]",
+                "hostNames": [
+                    "sample-php-web-app.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "sample-php-web-app.azurewebsites.net",
+                    "sample-php-web-app.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_sample_php_web_app_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_sample_php_web_app_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ServicePlancfecf0bd_8beb_name'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ServicePlancfecf0bd_8beb_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/sample-php-web-app/providers/Microsoft.Web/sites/sample-php-web-app/config/web'.",
+            "type": "Microsoft.Web/sites/config",
+            "name": "[parameters('config_web_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "South Central US",
+            "tags": {
+                "hidden-related:/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourcegroups/sample-php-web-app/providers/Microsoft.Web/serverfarms/ServicePlancfecf0bd-8beb": "empty"
+            },
+            "scale": null,
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "5.6",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": null,
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$sample-php-web-app",
+                "publishingPassword": null,
+                "appSettings": null,
+                "metadata": null,
+                "connectionStrings": null,
+                "machineKey": null,
+                "handlerMappings": null,
+                "documentRoot": null,
+                "scmType": "GitHub",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "javaVersion": null,
+                "javaContainer": null,
+                "javaContainerVersion": null,
+                "appCommandLine": "",
+                "managedPipelineMode": 0,
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false,
+                        "virtualDirectories": null
+                    }
+                ],
+                "winAuthAdminState": 0,
+                "winAuthTenantState": 0,
+                "customAppPoolIdentityAdminState": false,
+                "customAppPoolIdentityTenantState": false,
+                "runtimeADUser": null,
+                "runtimeADUserPassword": null,
+                "loadBalancing": 1,
+                "routingRules": [],
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "limits": null,
+                "autoHealEnabled": false,
+                "autoHealRules": {
+                    "triggers": null,
+                    "actions": null
+                },
+                "tracingOptions": null,
+                "vnetName": "",
+                "siteAuthEnabled": false,
+                "siteAuthSettings": {
+                    "enabled": null,
+                    "unauthenticatedClientAction": null,
+                    "tokenStoreEnabled": null,
+                    "allowedExternalRedirectUrls": null,
+                    "defaultProvider": null,
+                    "clientId": null,
+                    "clientSecret": null,
+                    "issuer": null,
+                    "allowedAudiences": null,
+                    "additionalLoginParams": null,
+                    "isAadAutoProvisioned": false,
+                    "googleClientId": null,
+                    "googleClientSecret": null,
+                    "googleOAuthScopes": null,
+                    "facebookAppId": null,
+                    "facebookAppSecret": null,
+                    "facebookOAuthScopes": null,
+                    "twitterConsumerKey": null,
+                    "twitterConsumerSecret": null,
+                    "microsoftAccountClientId": null,
+                    "microsoftAccountClientSecret": null,
+                    "microsoftAccountOAuthScopes": null
+                },
+                "cors": null,
+                "push": null,
+                "apiDefinition": null,
+                "autoSwapSlotName": null,
+                "localMySqlEnabled": false,
+                "ipSecurityRestrictions": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_sample_php_web_app_name'))]"
+            ]
+        }
+    ]
