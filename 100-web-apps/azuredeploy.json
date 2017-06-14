@@ -28,9 +28,6 @@
             "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource",
             "displayName": "Website"
          },
-         "dependsOn": [
-            "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
-         ],
          "properties": {
             "name": "[parameters('webSiteName')]",
             "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
