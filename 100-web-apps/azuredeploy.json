@@ -28,10 +28,10 @@
             "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource",
             "displayName": "Website"
          },
-         "properties": {
-            "name": "[parameters('webSiteName')]",
-            "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
-         },
+        "properties": {
+          "name": "[parameters('webSiteName')]",
+          "serverFarmId": "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        },
          "resources": [
             {
                "apiVersion": "2015-08-01",
