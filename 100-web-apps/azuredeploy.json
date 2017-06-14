@@ -26,8 +26,8 @@
          "location": "[resourceGroup().location]",
         "properties": {
           "name": "[parameters('webSiteName')]",
-          "serverFarmId": "/subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/seryioappRG/providers/Microsoft.web/serverfarms/seryioappplan",
- 
+          "serverFarmId": "[resourceId('Microsoft.web/serverfarms', 'seryioappplan')]"
+
         },
          "resources": [ 
             {
