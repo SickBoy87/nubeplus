@@ -24,10 +24,10 @@
          "name": "[parameters('webSiteName')]",
          "type": "Microsoft.Web/sites",
          "location": "[resourceGroup().location]",
-         "properties": {
+        "properties": {
           "name": "[parameters('webSiteName')]",
-          "serverFarmId": "[parameters('hostingPlanName')]"
-         },
+          "serverFarmId": "subscriptions/6d33b69a-ec90-4bf5-800e-2783e37b6c4e/resourceGroups/resourceGroupName/providers/Microsoft.web/serverfarms/seryioappplan"
+        },
          "resources": [
             {
                "apiVersion": "2015-08-01",
