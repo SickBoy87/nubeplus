@@ -42,7 +42,7 @@
     "imageOffer": "UbuntuServer",
     "vmSize": "Standard_A1",
 
-    "vnet1_addressPrefix": "10.0.0.0/16",
+    "vnet1_netPrefix": "10.0.0.0/16",
     "vnet1_vnetName": "vnet1",
     "vnet1_ID": "[resourceId('Microsoft.Network/virtualNetworks',variables('vnet1_vnetName'))]",
     "vnet1_subnetPrefix": "10.0.0.0/24",
