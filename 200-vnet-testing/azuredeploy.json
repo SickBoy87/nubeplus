@@ -45,7 +45,7 @@
     "vnet1_ID": "[resourceId('Microsoft.Network/virtualNetworks',variables('vnet1_vnetName'))]",
     "vnet1_subnetPrefix": "10.0.0.0/24",
     "vnet1_subnetName": "vnet1_subnet1",
-    "vnet1_subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('vnet1_subnetName'))]",
+    "vnet1_subnetRef": "[concat(variables('vnet1_ID'),'/subnets/',variables('vnet1_subnetName'))]",
 
 
     "nicName": "myVMNic",
