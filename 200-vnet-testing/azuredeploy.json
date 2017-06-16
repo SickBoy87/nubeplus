@@ -39,6 +39,7 @@
     "storageAccountType": "Standard_LRS",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
+    "vmSize": "Standard_A1",
 
     "vnet1_addressPrefix": "10.0.0.0/16",
     "vnet1_vnetName": "vnet1",
@@ -51,8 +52,8 @@
     "nicName": "myVMNic",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
-    "vmName": "MyUbuntuVM",
-    "vmSize": "Standard_A1"
+    "vmName": "MyUbuntuVM"
+
 
   },
   "resources": [
