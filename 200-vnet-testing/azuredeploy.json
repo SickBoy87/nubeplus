@@ -36,20 +36,24 @@
   },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'salinuxvm')]",
+    "storageAccountType": "Standard_LRS",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
+
+    "vnet1_addressPrefix": "10.0.0.0/16",
+    "vnet1_vnetName": "vnet1",
+    "vnet1_ID": "[resourceId('Microsoft.Network/virtualNetworks',variables('vnet1_vnetName'))]",
+    "vnet1_subnetPrefix": "10.0.0.0/24",
+    "vnet1_subnetName": "vnet1_subnet1",
+    "vnet1_subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('vnet1_subnetName'))]",
+
+
     "nicName": "myVMNic",
-    "addressPrefix": "10.0.0.0/16",
-    "subnetName": "Subnet",
-    "subnetPrefix": "10.0.0.0/24",
-    "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
     "vmName": "MyUbuntuVM",
-    "vmSize": "Standard_A1",
-    "virtualNetworkName": "MyVNET",
-    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-    "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
+    "vmSize": "Standard_A1"
+
   },
   "resources": [
     {
@@ -78,7 +82,7 @@
     {
       "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/virtualNetworks",
-      "name": "[variables('virtualNetworkName')]",
+      "name": "[variables('vnet1_vnetName')]",
       "location": "[resourceGroup().location]",
       "properties": {
         "addressSpace": {
@@ -88,14 +92,15 @@
         },
         "subnets": [
           {
-            "name": "[variables('subnetName')]",
+            "name": "[variables('vnet1_subnetName')]",
             "properties": {
-              "addressPrefix": "[variables('subnetPrefix')]"
+              "addressPrefix": "[variables('vnet1_subnetPrefix')]"
             }
           }
         ]
       }
     },
+
     {
       "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/networkInterfaces",
@@ -103,7 +108,7 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
-        "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+        "[resourceId('Microsoft.Network/virtualNetworks/', variables('vnet1_vnetName'))]"
       ],
       "properties": {
         "ipConfigurations": [
@@ -115,7 +120,7 @@
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
               },
               "subnet": {
-                "id": "[variables('subnetRef')]"
+                "id": "[variables('vnet1_subnetRef')]"
               }
             }
           }
