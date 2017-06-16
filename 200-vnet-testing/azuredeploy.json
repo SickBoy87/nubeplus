@@ -89,7 +89,7 @@
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[variables('addressPrefix')]"
+            "[variables('vnet1_netPrefix')]"
           ]
         },
         "subnets": [
