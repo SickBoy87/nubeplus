@@ -16,6 +16,7 @@
     },
     "dnsLabelPrefix": {
       "type": "string",
+      "defaultValue": "testvnet",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
