@@ -145,7 +145,7 @@
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
               "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables(vm1_'publicIPAddressName'))]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('vm1_publicIPAddressName'))]"
               },
               "subnet": {
                 "id": "[variables('vnet1_subnetRef')]"
