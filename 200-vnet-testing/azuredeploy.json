@@ -49,6 +49,12 @@
     "vnet1_subnetName": "vnet1_subnet1",
     "vnet1_subnetRef": "[concat(variables('vnet1_ID'),'/subnets/',variables('vnet1_subnetName'))]",
 
+    "vnet2_netPrefix": "10.1.0.0/16",
+    "vnet2_vnetName": "vnet2",
+    "vnet2_ID": "[resourceId('Microsoft.Network/virtualNetworks',variables('vnet2_vnetName'))]",
+    "vnet2_subnetPrefix": "10.1.0.0/24",
+    "vnet2_subnetName": "vnet2_subnet1",
+    "vnet2_subnetRef": "[concat(variables('vnet1_ID'),'/subnets/',variables('vnet2_subnetName'))]",
 
     "nicName": "myVMNic",
     "publicIPAddressName": "myPublicIP",
@@ -97,6 +103,27 @@
             "name": "[variables('vnet1_subnetName')]",
             "properties": {
               "addressPrefix": "[variables('vnet1_subnetPrefix')]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2017-04-01",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[variables('vnet2_vnetName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet2_netPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet2_subnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('vnet2_subnetPrefix')]"
             }
           }
         ]
