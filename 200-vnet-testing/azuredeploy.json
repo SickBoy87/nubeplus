@@ -55,7 +55,7 @@
     "vnet2_ID": "[resourceId('Microsoft.Network/virtualNetworks',variables('vnet2_vnetName'))]",
     "vnet2_subnetPrefix": "10.1.0.0/24",
     "vnet2_subnetName": "vnet2_subnet1",
-    "vnet2_subnetRef": "[concat(variables('vnet1_ID'),'/subnets/',variables('vnet2_subnetName'))]",
+    "vnet2_subnetRef": "[concat(variables('vnet2_ID'),'/subnets/',variables('vnet2_subnetName'))]",
 
     "vm1_nicName": "vm1Nic",
     "vm1_publicIPAddressName": "vm1PublicIP",
