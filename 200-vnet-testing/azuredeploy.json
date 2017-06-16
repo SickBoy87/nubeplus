@@ -131,7 +131,7 @@
       "properties": {
         "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
         "dnsSettings": {
-          "domainNameLabel": "[parameters('vm1_dnsLabelPrefix')]"
+          "domainNameLabel": "[variables('vm1_dnsLabelPrefix')]"
         }
       }
     },
@@ -220,7 +220,7 @@
       "properties": {
         "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
         "dnsSettings": {
-          "domainNameLabel": "[parameters('vm2_dnsLabelPrefix')]"
+          "domainNameLabel": "[variables('vm2_dnsLabelPrefix')]"
         }
       }
     },
