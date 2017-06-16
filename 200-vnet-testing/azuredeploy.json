@@ -270,12 +270,14 @@
         },
         "osProfile": {
           "computerName": "[variables('vm2_vmName')]",
-          "linuxOperatingSystemProfile": {
-            "username": "[parameters('adminUserName')]",
-            "sshProfile": {
+          "adminUsername": "[parameters('adminUserName')]",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": "true",
+            "ssh": {
               "publicKeys": [
                 {
-                  "certificateData": "[parameters('sshPublicKey')]"
+                  "path": "[concat('/home/',parameters('adminUsername'),'/.ssh/authorized_keys')]",
+                  "keyData": "[parameters('sshPublicKey')]"
                 }
               ]
             }
