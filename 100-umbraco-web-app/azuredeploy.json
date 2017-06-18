@@ -7,7 +7,7 @@
             "type": "String"
         },
         "servers_sergioumbracowebdb_name": {
-            "defaultValue": "sergioumbracowebdb",
+            "defaultValue": "sergioumbracowebdb2",
             "type": "String"
         },
         "serverfarms_sergioumbracowebPlan_name": {
