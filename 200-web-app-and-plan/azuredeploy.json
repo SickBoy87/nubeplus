@@ -64,13 +64,15 @@
          "apiVersion": "2015-08-01",
          "name": "[parameters('webSiteName')]",
          "type": "Microsoft.Web/sites",
+         "dependsOn": [
+              "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+         ],
          "location": "[resourceGroup().location]",
-        "properties": {
-          "name": "[parameters('webSiteName')]",
-          "serverFarmId": "[resourceId('Microsoft.web/serverfarms', parameters('hostingPlanName'))]"
-
-        },
-        "resources": [
+         "properties": {
+             "name": "[parameters('webSiteName')]",
+             "serverFarmId": "[resourceId('Microsoft.web/serverfarms', parameters('hostingPlanName'))]"
+          },
+          "resources": [
           {
             "apiVersion": "2015-08-01",
             "name": "web",
@@ -82,7 +84,6 @@
               "phpVersion": "5.6"
             }
           }
-
         ]
       }
    ]
