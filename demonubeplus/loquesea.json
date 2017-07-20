@@ -1,1 +1,93 @@
-
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "disks_demonubeplus_OsDisk_1_ee02c36e94e14629b0701cef1f6da9b3_name": {
+            "defaultValue": "demonubeplus_OsDisk_1_ee02c36e94e14629b0701cef1f6da9b3",
+            "type": "String"
+        },
+        "virtualMachines_demonubeplus_name": {
+            "defaultValue": "demonubeplus",
+            "type": "String"
+        },
+        "virtualMachines_demonubeplus_id": {
+            "defaultValue": "/subscriptions/ef319be2-8bfb-41e6-9e65-3dba55802be8/resourceGroups/DemoNubePlus/providers/Microsoft.Network/networkInterfaces/demonubeplus483",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/ef319be2-8bfb-41e6-9e65-3dba55802be8/resourceGroups/DemoNubePlus/providers/Microsoft.Compute/disks/demonubeplus_OsDisk_1_ee02c36e94e14629b0701cef1f6da9b3'.",
+            "type": "Microsoft.Compute/disks",
+            "name": "[parameters('disks_demonubeplus_OsDisk_1_ee02c36e94e14629b0701cef1f6da9b3_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "northeurope",
+            "scale": null,
+            "properties": {
+                "accountType": "Premium_LRS",
+                "osType": "Windows",
+                "creationData": {
+                    "createOption": "FromImage",
+                    "imageReference": {
+                        "id": "/Subscriptions/ef319be2-8bfb-41e6-9e65-3dba55802be8/Providers/Microsoft.Compute/Locations/northeurope/Publishers/MicrosoftWindowsServer/ArtifactTypes/VMImage/Offers/WindowsServer/Skus/2016-Datacenter/Versions/latest"
+                    }
+                },
+                "diskSizeGB": 128
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/ef319be2-8bfb-41e6-9e65-3dba55802be8/resourceGroups/DemoNubePlus/providers/Microsoft.Compute/virtualMachines/demonubeplus'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_demonubeplus_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "northeurope",
+            "scale": null,
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS2_v2_Promo"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2016-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_demonubeplus_name'),'_OsDisk_1_ee02c36e94e14629b0701cef1f6da9b3')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_demonubeplus_OsDisk_1_ee02c36e94e14629b0701cef1f6da9b3_name'))]"
+                        },
+                        "diskSizeGB": 128
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_demonubeplus_name')]",
+                    "adminUsername": "Cloudmas",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('virtualMachines_demonubeplus_id')]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/disks', parameters('disks_demonubeplus_OsDisk_1_ee02c36e94e14629b0701cef1f6da9b3_name'))]"
+            ]
+        }
+    ]
+}
